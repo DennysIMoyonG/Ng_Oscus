@@ -211,3 +211,31 @@ console.log(usuario.getNombreApellido());
 
 //es una libreria que permite los componentes web Angular
 //SPA
+
+
+// LInt forma de ver que las reglas se cumplan en el codigo
+// npm install --save-dev  eslint
+// npm install --save-dev @typescript-eslint/eslint-plugin
+// npm install --save-dev @typescript-eslint/parser
+
+// compilar el angular 
+
+// npm run build --compilar para desarrollo
+// npm run builf --prod  para producción  ng  build --prod
+
+// node-modules  --> dependencias
+// /srv -> fuentes
+      // app/ -> archivos de desarrollo
+          // modulo principal
+          // componente principal 
+          // modulo rutas 
+      // /assets -> archios estaticos 
+      // /enviroments -> variables desarrollo y produccion
+      // main.ts -> configuraciones
+      // polyfills.ts -> funsiones que no estan tipadas,
+      // styless.scss -> estilos globales
+      // test.ts -> pruebas
+// Angular.json -> configuracion del angular
+// karma.conf.js -> test
+// packages.json -> archivo de configuración del proyecto
+// tsConfig -> configuracion para typeScript
