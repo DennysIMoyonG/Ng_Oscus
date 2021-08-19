@@ -1,9 +1,46 @@
-
 <!-- interpolacion -->
-<h5>componente....</h5>
+<!-- <h5>componente....</h5>
 <p>nombre {{nombre}}</p>
 <p>edad {{numero}}</p>
 <p>estadoCivil {{estadoCivil}}</p>
 <p>objeto {{objeto | json}}</p>
-<p *ngFor="let item of arreglo; let i = index">index: {{i}} - valor: {{item}} </p>
+<p *ngFor="let item of arreglo; let i = index">index: {{i}} - valor: {{item}} </p> -->
 
+ <h1>Grillas</h1>
+
+<!--<div class="row">
+    <div class="col-sm-6 azul">sm-6</div>
+    <div class="col-sm-6 rojo">sm-6</div>
+    <div class="col-md-6 verde">md-6</div>
+    <div class="col-md-6 naranja">md-6</div>
+    <div class="col-lg-6 cafe">lg-6</div>
+    <div class="col-lg-6 azul">lg-6</div>
+    <div class="col-lg-8 verde">
+        <div class="col-sm-4 rojo"></div>
+        <div class="col-sm-4 naranja"></div>
+        <div class="col-sm-4 cafe"></div>
+    </div>
+    <div class="col-lg-4 azul"></div>
+</div> -->
+
+<div class="row">
+    <div class="col-sm-6">
+        <h2>{{usuario.nombre}}</h2>
+        <!-- property binding [] -->
+        <img [src]="usuario.imagen" alt="" class="img-fluid">
+    </div>
+    <div class="col-sm-6">
+        <p>
+            <span class="bold">{{usuario.descripcion}}</span>
+        </p>
+        <div class="row">
+            <div class="col-sm-4"></div>
+            <div class="col-sm-4">
+                <!-- event binding () -->
+                <button class="w-100 btn btn-info" (click) = "cambiarImagen($event, usuario)">
+                    cambiar imagen
+                </button></div>
+            <div class="col-sm-4"></div>
+        </div>
+    </div>
+</div>
