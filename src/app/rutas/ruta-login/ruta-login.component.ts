@@ -52,7 +52,7 @@ export class RutaLoginComponent implements OnInit {
   obtenerTodos() {
     this._todoService.obtenerTodos().subscribe((todos) => {
       this.todos = todos;
-      console.log(this.todos);
+      console.log("todos", this.todos);
     },
       (error) => {
         console.error({
