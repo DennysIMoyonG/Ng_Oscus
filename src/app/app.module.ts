@@ -12,6 +12,7 @@ import { AppComponent } from './app.component';
 import { RutaNoEncontradaComponent } from './rutas/ruta-no-encontrada/ruta-no-encontrada.component';
 import { RutaLoginComponent } from './rutas/ruta-login/ruta-login.component';
 import { MostrarUsuarioComponent } from './componentes/mostrar-usuario/mostrar-usuario.component';
+import { TodosRestModule } from './Servicios/rest/todos-rest/todos-rest.module';
 
 
 @NgModule({ //decorador 
@@ -25,7 +26,8 @@ import { MostrarUsuarioComponent } from './componentes/mostrar-usuario/mostrar-u
     BrowserModule,
     AppRoutingModule,
     FinanzasModule,
-    CreditoModule
+    CreditoModule,
+    TodosRestModule
   ],
   providers: [], // servicios declarados y crados 
   bootstrap: [AppComponent]
