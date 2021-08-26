@@ -40,11 +40,11 @@ export class TodosRestService {
     return this._httpClient.post<TodoInterface>(this.resource, todo).pipe(map(a => a as TodoInterface));
   }
 
-  actualizarUno(todo: TodoInterface, id: number) {
+  actualizarUno(todo: TodoInterface, id: number): Observable<TodoInterface>  {
     return this._httpClient.put<TodoInterface>(this.resource + "/" + id.toString(), todo).pipe(map(a => a as TodoInterface));
   }
 
-  eliminarUno(id: number) {
-    this._httpClient.delete(this.resource + "/" + id.toString()).pipe(map(a => a as any as void));;
+  eliminarUno(id?: number):Observable<void> {
+    return this._httpClient.delete(this.resource + "/" + id).pipe(map(a => a as any as void));;
   }
 }

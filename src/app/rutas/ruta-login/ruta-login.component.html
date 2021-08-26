@@ -16,3 +16,51 @@
         <p>DESCRIPCION</p>
     </div>
 </div> -->
+
+<div class="row">
+    <div class="col-md-4"></div>
+    <div class="col-md-4"></div>
+    <div class="col-md-4">
+        <!-- <button class="btn btn-primary w-100" (click)="insertarTodo()">
+            Crear
+        </button> -->
+        <button class="btn btn-primary w-100" *ngIf="!mostarMostrarFormularioCrear"
+            (click)="mostarMostrarFormularioCrear = !mostarMostrarFormularioCrear">Crear</button>
+    </div>
+
+</div>
+<div class="row justify-content-center">
+    <div class="col-md-6" *ngIf="mostarMostrarFormularioCrear">
+        <app-formulario-todo (formValido)="escucharEventoformValido($event)"></app-formulario-todo>
+        <div class="row">
+            <div class="col-md-6">
+                <button class="btn btn-success w-100 col-md-6" 
+                        [disabled]="!mostarMostrarBotonCrear"
+                        (click)="insertarTodo()"
+                        (click)="mostarMostrarFormularioCrear = !mostarMostrarFormularioCrear"
+                        >Registrar</button>
+            </div>
+            <div class="col-md-6">
+                <button class="btn btn-info w-100" 
+                        *ngIf="mostarMostrarFormularioCrear"
+                        (click)="mostarMostrarFormularioCrear = !mostarMostrarFormularioCrear">Cancelar</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <h1>Lista de Todos</h1>
+        <p>Puedes editar o eliminar</p>
+    </div>
+    <div (click)="endiv(todo)" class="col-md-4" *ngFor="let todo of todos">
+        <div [ngClass]="{'completado' : todo.completed }" class="contenedor-todo">
+            <span class="titulo text-center">{{todo.id}}#{{todo.title}}</span>
+            <hr>
+            <button   type="button" class="btn  btn-info btn-sm w-100 mt-2" (click)="navegarRutaUsuario(todo.id)">Visitar
+                Usuario</button>
+            <button  type="button" class="btn  btn-warning btn-sm w-100 mt-2" (click)="editarTodo(todo.id)">Editar Usuario</button>
+            <button type="button" class="btn  btn-danger btn-sm w-100 mt-2" (click)="eliminarTodo(todo.id)">Eliminar Usuario</button>
+        </div>
+    </div>
+</div>

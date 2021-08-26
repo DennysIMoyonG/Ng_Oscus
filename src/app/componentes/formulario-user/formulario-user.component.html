@@ -1,0 +1,35 @@
+<form [formGroup]="userForm" (ngSubmit)="enviarDatos()">
+    <div class="mb-3">
+        <label for="txtNombre" class="form-label text-small">Nombre</label>
+        <input  type="text" 
+                name="nombre" 
+                class="form-control" 
+                formControlName="nombre"
+                [class.is-invalid] = "validarNombre"
+                id="txtNombre" >
+        <span *ngIf="validarNombre" id="helpTittle" class="text-danger">Error en el nombre</span>
+    </div>
+    <div class="mb-3">
+        <label for="txtNombreUsuario" class="form-label text-small">Nombre Usuario</label>
+        <input  type="text" 
+                name="nombreUsuario" 
+                class="form-control" 
+                formControlName="usuario"
+                [class.is-invalid] = "validarUsuario"
+                id="txtNombreUsuario" >
+        <span *ngIf="validarUsuario" id="helpTittle" class="text-danger">Error en el usuario</span>
+
+    </div>
+    <div class="mb-3">
+        <label for="txtNombre" class="form-label">Correo</label>
+        <input  type="email" 
+                name="correo" 
+                class="form-control" 
+                id="txtEmail" 
+                formControlName="correo"
+                [class.is-invalid] = "validarCorreo"
+                placeholder="name@example.com">
+        <span *ngIf="validarCorreo" id="helpTittle" class="text-danger">Error en el correo</span>
+
+    </div>
+</form>

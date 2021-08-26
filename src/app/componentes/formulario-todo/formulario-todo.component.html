@@ -1,0 +1,42 @@
+
+
+<form [formGroup]="todoForm" (ngSubmit)="enviarFormulario()">
+    <div class="form-group mb-3">
+        <label for="txtEmail" class="form-label">Titulo</label>
+        <input 
+        id="txtEmail" 
+        type="text" 
+        class="form-control" 
+        arial-description="helpTittle"
+        name="titulo"
+        formControlName="titulo"
+        [class.is-invalid] = "validarTitle"
+        >
+        <span *ngIf="validarTitle" id="helpTittle" class="text-danger">Ingresa el correo</span>
+    </div>
+    <div class="form-group mb-3">
+        <label for="idCompleted" class="form-label">Compleado</label>
+        <select name="completed" 
+                class="form-select" 
+                id="idCompleted" 
+                formControlName="completed"
+                [class.is-invalid]="validateCompleted">
+            <option [value]="">Seleccione el estado</option>
+            <option [value]="true">Completado</option>
+            <option [value]="false">Incompleto</option>
+        </select>
+        <span *ngIf="validateCompleted" id="helpTittle" class="text-danger">Seleccione el estado</span>
+    </div>
+    <!-- <div *ngIf="todoForm.get('titulo')?.invalid" class="alert alert-waning" role="alert">
+        <span *ngIf="todoForm.get('titulo')?.hasError('required') && this.todoForm.get('titulo')?.touched">es requerido</span>
+        <span *ngIf="todoForm.get('titulo')?.hasError('minlength') && this.todoForm.get('titulo')?.touched">numero min de caracteres</span>
+        <span *ngIf="todoForm.get('titulo')?.hasError('maxlength') && this.todoForm.get('titulo')?.touched">numero max de caracteres</span>
+    </div> -->
+    <!-- <div class="row mb-3">
+        <button class="btn btn-success w-100"
+        [disabled] = "todoForm.invalid"
+        type="submit">
+        Guardar
+        </button>
+    </div> -->
+</form>

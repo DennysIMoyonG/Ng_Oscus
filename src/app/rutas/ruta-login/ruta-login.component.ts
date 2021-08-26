@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { TodoInterface } from 'src/app/Servicios/rest/interfaces/todos.interface';
 import { TodosRestService } from '../../Servicios/rest/todos-rest/todos-rest.service';
 
@@ -10,6 +11,12 @@ import { TodosRestService } from '../../Servicios/rest/todos-rest/todos-rest.ser
 export class RutaLoginComponent implements OnInit {
 
   mostarPrimerComponente: boolean = true;
+  mostarMostrarFormularioCrear: boolean = false;
+  mostarMostrarBotonCrear: boolean = false;
+  nuevoTodo = {
+    titulo: '',completed: false
+  }
+
   usuarios = [
     {
       nombre: "Edwin Moyón",
@@ -37,14 +44,13 @@ export class RutaLoginComponent implements OnInit {
   todos: TodoInterface[] = [];
 
   constructor(
-    private readonly _todoService: TodosRestService
+    private readonly _todoService: TodosRestService,
+    private readonly _router: Router
   ) { }
 
   ngOnInit(): void {
     this.obtenerTodos();
     this.obtenerTodo(101);
-    let uno:TodoInterface = {userId : 3202020, id : 2828282, title : "hola amigos", completed : true }
-    this.insertarTodo(uno);
   }
 
 
@@ -62,7 +68,7 @@ export class RutaLoginComponent implements OnInit {
       });
   }
 
-  obtenerTodo(id:number){
+  obtenerTodo(id: number) {
     this._todoService.obtenerUno(id).subscribe((todo) => {
       console.log("todo", todo);
     },
@@ -75,15 +81,73 @@ export class RutaLoginComponent implements OnInit {
     )
   }
 
-  insertarTodo(todo:TodoInterface){
+  insertarTodo() {
+    console.log("nuevo");
+    
+    let todo: TodoInterface = { userId: 3202020, id: 2828282, title: this.nuevoTodo.titulo, completed: this.nuevoTodo.completed }
     this._todoService.crearUno(todo).subscribe((todo) => {
-      this.todos.push(todo);
+      this.todos.unshift(todo);
       console.log("nuevo todo", this.todos);
-    },(error) => {
+    }, (error) => {
       console.error({
         error,
         mensaje: 'Error al guardar un todo'
       });
     });
+  }
+
+  eliminarTodo(id?: number) {
+    this._todoService.eliminarUno(id).subscribe(() => {
+      console.log("eliminado");
+
+      var index = this.todos.findIndex((data) => data.id == id);
+      if (index)
+        this.todos.splice(index, 1);
+    }, (error) => {
+      console.error({
+        error,
+        mensaje: 'Error al eliminar un todo'
+      });
+    });
+  }
+
+  editarTodo(id?: number) {
+    if (id) {
+      let todo: TodoInterface = { title: "se ha editado amigos", completed: true }
+
+      this._todoService.actualizarUno(todo, id).subscribe((todoUp) => {
+        var index = this.todos.findIndex((data) => data.id == todoUp.id);
+        if (index)
+          this.todos[index] = todoUp;
+      }, (error) => {
+        console.error({
+          error,
+          mensaje: 'Error al editado un todo'
+        });
+      });
+    }
+  }
+
+  navegarRutaUsuario(id?: number) {
+    if (id) {
+      let ruta = ['/usuario', id];
+      this._router.navigate(ruta);
+    }
+  }
+
+  endiv(todo: TodoInterface) {
+    console.log("En div");
+    this.navegarRutaUsuario(todo.id);
+  }
+
+  escucharEventoformValido(formulario: { titulo: string; completed: boolean } | undefined) {
+    if (formulario) {
+      this.mostarMostrarBotonCrear = true;
+      this.nuevoTodo = formulario;
+    }
+    else {
+      this.mostarMostrarBotonCrear = false;
+    }
+
   }
 }

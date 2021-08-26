@@ -1,0 +1,47 @@
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <app-formulario-user (notificarDatos)="recibirInformacion($event)" [usuarioMemoria]="usuarioMemoriaP" [accionesForm]="validarFormulario">
+            </app-formulario-user>
+            <div class="row">
+                <div class="offset-6 col-md-6">
+                    <button class="btn btn-outline-danger float-end"
+                    (click)="resetearFormulario()">Cancelar</button>
+                    <button type="reset" class="btn btn-outline-info float-end me-2"
+                        (click)="validarForm()">Guardar</button>
+                </div>
+            </div>
+            <hr>
+            <h5>Lista de Usuarios</h5>
+            <div class="table-responsive max-height">
+                <table class="table table-hover">
+                    <caption>Mantenimiento de Usuarios</caption>
+                    <thead class="table-dark">
+                        <tr>
+                            <th>Identificador</th>
+                            <th>Nombre</th>
+                            <th>Usuario</th>
+                            <th>Correo</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of usuarios">
+                            <td>{{item.id}}</td>
+                            <td>{{item.name}}</td>
+                            <td>{{item.username}}</td>
+                            <td>{{item.email}}</td>
+                            <th>
+                                <button type="button" class="btn btn-outline-info btn-sm"
+                                    (click)="actualizarInformacion(item)"><i class="fa fa-edit"></i></button>
+                                <button type="button" class="btn btn-outline-danger btn-sm"
+                                (click)="eliminarRegistro(item)"><i
+                                        class="fa fa-trash"></i></button>
+                            </th>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

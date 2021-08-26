@@ -1,0 +1,19 @@
+.contenedor-todo{
+    border: 1px solid #3b3535;
+    background-color: rgb(185, 172, 172, 0.1);
+    margin:  5px;
+    padding: 10px;
+    &:hover{
+        background-color: rgb(224, 205, 34, 0.9);
+        transform: scale(1.01);
+    }
+}
+
+.titulo{
+    min-height: 10px;
+}
+
+.completado{
+    border-color: green;
+    background-color: rgb(167, 216, 94);
+}
